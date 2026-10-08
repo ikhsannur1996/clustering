@@ -68,3 +68,13 @@ def test_persona_naming_is_independent_of_cluster_numbering():
     assert [s["code"] for s in name_segments(profile).values()] == expected
     shuffled = profile.iloc[[3, 0, 4, 1, 2]].reset_index(drop=True)
     assert [s["code"] for s in name_segments(shuffled).values()] == [expected[i] for i in [3, 0, 4, 1, 2]]
+
+
+def test_games_howell_detects_only_real_difference():
+    from src.evaluation import games_howell
+    rng = np.random.default_rng(1)
+    v = np.concatenate([rng.normal(0, 1, 300), rng.normal(0, 3, 300), rng.normal(1, 1, 300)])
+    g = np.repeat(["a", "b", "c"], 300)
+    res = games_howell(v, g).set_index(["grup_a", "grup_b"])
+    assert res.loc[("a", "b"), "p_value"] > 0.05      # rata-rata sama, varians beda
+    assert res.loc[("a", "c"), "p_value"] < 1e-6

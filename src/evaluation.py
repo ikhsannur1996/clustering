@@ -183,3 +183,23 @@ def holm_correction(p_values: pd.Series) -> pd.Series:
 
 def stability_verdict(value: float) -> str:
     return "stabil" if value >= 0.75 else ("cukup" if value >= 0.6 else "tidak stabil")
+
+
+def games_howell(values, labels) -> pd.DataFrame:
+    """Uji Games-Howell: perbandingan rata-rata SEMUA pasangan grup tanpa asumsi varians sama
+    (Welch t + distribusi studentized range, sehingga family-wise error terkontrol)."""
+    from itertools import combinations
+
+    df = pd.DataFrame({"v": np.asarray(values, float), "g": np.asarray(labels)})
+    agg = df.groupby("g")["v"].agg(["mean", "var", "count"])
+    k = len(agg)
+    rows = []
+    for a, b in combinations(agg.index, 2):
+        ma, va, na = agg.loc[a]
+        mb, vb, nb = agg.loc[b]
+        se2 = va / na + vb / nb
+        t = (ma - mb) / np.sqrt(se2)
+        dof = se2**2 / ((va / na) ** 2 / (na - 1) + (vb / nb) ** 2 / (nb - 1))
+        p = stats.studentized_range.sf(abs(t) * np.sqrt(2), k, dof)
+        rows.append({"grup_a": a, "grup_b": b, "selisih": ma - mb, "t": t, "df": dof, "p_value": float(min(1.0, p))})
+    return pd.DataFrame(rows)

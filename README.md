@@ -3,6 +3,7 @@
 Proyek clustering perbankan dari notebook sampai API: mengelompokkan nasabah berdasarkan **perilaku transaksi, saldo, investasi, kredit, dan kanal**, lalu memberi setiap segmen **persona** dan **rekomendasi produk**. Dua model dibandingkan (**K-Means** vs **Gaussian Mixture**), model terbaik disimpan sebagai **JSON**, disajikan lewat **FastAPI**, dan dijalankan di **Docker lokal**.
 
 **Highlight:**
+- **Model statistik** sebelum uji stabilitas: VIF fitur + OLS fitur ~ segmen (intercept, koefisien, p-value, R²)
 - Dataset 12.000 nasabah (snapshot Jan–Des 2025): 12 fitur perilaku untuk model + pekerjaan, status karyawan, dan tier kota untuk profil
 - Preprocessing di pipeline: **log1p** untuk kolom uang yang miring, **scaling**, **one-hot berbobot** untuk kanal; **binning** umur & gaji (rentang UMR) untuk membaca profil
 - Pemilihan k dengan aturan tertulis: rentang bisnis 4–8, **stabilitas bootstrap ≥ 0,75**, silhouette tertinggi
@@ -90,6 +91,7 @@ Isi notebook (18 bagian; setiap cell kode didahului kotak **Alur data: Input →
 | 6 | **Uji kecenderungan cluster**: Hopkins vs data nol, peta kepadatan PCA |
 | 7 | 2 model kandidat + demonstrasi kenapa GMM butuh `reg_covar` |
 | 8 | **Pencarian k** (2–10): inertia, BIC/AIC, silhouette, CH, DB, stabilitas bootstrap, aturan pemilihan k |
+| **8.1** | **Model statistik kandidat (sebelum uji stabilitas)**: **VIF** fitur input (dimensi “nilai nasabah” terhitung ganda) dan regresi **OLS fitur ~ segmen** dengan SE robust HC3: **intercept** (rata-rata segmen acuan), **koefisien** (selisih tiap segmen), **p-value (Holm)**, CI 95%, R²/η² per fitur; uji homogenitas varians **Brown-Forsythe**, perbandingan berpasangan semua segmen **Games-Howell**, dan **LDA** (structure matrix, dimensi pemisah, akurasi CV) |
 | 9 | **Evaluasi mendalam** (padanan cross-validation): diagram silhouette, bootstrap 50×, split-half 20×, uji permutasi 99×, pemilihan model |
 | 10 | Model final + **penamaan persona otomatis** |
 | 11 | **Profil segmen**: indeks relatif, PCA, binning umur & gaji, demografi, Kruskal-Wallis + ε², chi-square + Cramér's V |
