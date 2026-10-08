@@ -1,0 +1,442 @@
+{
+ "format": "customer-segmentation-json-model",
+ "format_version": 1,
+ "metadata": {
+  "model_name": "kmeans",
+  "model_version": "20261008024626",
+  "trained_at": "2026-10-08T02:46:26+00:00",
+  "training_period": "2025-01 – 2025-09",
+  "n_training_rows": 9049,
+  "n_clusters": 5,
+  "features": [
+   "monthly_salary",
+   "avg_balance",
+   "investment_balance",
+   "monthly_txn_count",
+   "monthly_txn_amount",
+   "credit_card_spend",
+   "loan_outstanding",
+   "age",
+   "tenure_years",
+   "num_products",
+   "digital_txn_ratio",
+   "preferred_channel"
+  ],
+  "numeric_features": [
+   "monthly_salary",
+   "avg_balance",
+   "investment_balance",
+   "monthly_txn_count",
+   "monthly_txn_amount",
+   "credit_card_spend",
+   "loan_outstanding",
+   "age",
+   "tenure_years",
+   "num_products",
+   "digital_txn_ratio"
+  ],
+  "categorical_features": {
+   "preferred_channel": [
+    "atm",
+    "branch",
+    "internet_banking",
+    "mobile"
+   ]
+  },
+  "segments": {
+   "0": {
+    "code": "sme_transactor",
+    "name": "Pelaku Usaha / UMKM",
+    "rule": "monthly_txn_count median tertinggi",
+    "description": "Frekuensi & nominal transaksi sangat tinggi (arus kas usaha), saldo menengah-tinggi, pinjaman usaha.",
+    "recommendations": [
+     "Rekening giro & cash management bisnis",
+     "Kredit modal kerja / KUR",
+     "QRIS, EDC, payroll untuk karyawan",
+     "Internet banking bisnis multi-user"
+    ],
+    "share_dev": 0.14123107525693446,
+    "share_oot": 0.13690274483226025,
+    "profile_median": {
+     "monthly_salary": 17.49,
+     "avg_balance": 89.535,
+     "investment_balance": 21.765,
+     "monthly_txn_count": 137.0,
+     "monthly_txn_amount": 100.47,
+     "credit_card_spend": 0.99,
+     "loan_outstanding": 93.50999999999999,
+     "age": 42.0,
+     "tenure_years": 6.85,
+     "num_products": 4.0,
+     "digital_txn_ratio": 0.7575000000000001
+    }
+   },
+   "1": {
+    "code": "mass_saver",
+    "name": "Nasabah Massal Penabung",
+    "rule": "monthly_salary median terendah",
+    "description": "Gaji di sekitar UMR, saldo kecil, sedikit produk, transaksi jarang, masih banyak memakai ATM/cabang.",
+    "recommendations": [
+     "Aktivasi & edukasi mobile banking",
+     "Tabungan berjangka / autodebet nominal kecil",
+     "Asuransi mikro",
+     "Program loyalitas biaya rendah"
+    ],
+    "share_dev": 0.3537407448336833,
+    "share_oot": 0.3144696712978651,
+    "profile_median": {
+     "monthly_salary": 4.52,
+     "avg_balance": 5.46,
+     "investment_balance": 0.19,
+     "monthly_txn_count": 15.0,
+     "monthly_txn_amount": 2.74,
+     "credit_card_spend": 0.0,
+     "loan_outstanding": 3.0,
+     "age": 42.0,
+     "tenure_years": 6.0,
+     "num_products": 2.0,
+     "digital_txn_ratio": 0.473
+    }
+   },
+   "2": {
+    "code": "digital_young",
+    "name": "Profesional Muda Digital",
+    "rule": "digital_txn_ratio tinggi & usia muda (skor = digital_txn_ratio − usia/100)",
+    "description": "Usia muda, hampir semua transaksi lewat mobile, gaji menengah, sering bertransaksi, nasabah baru.",
+    "recommendations": [
+     "Fitur & promo di aplikasi mobile",
+     "Kartu kredit entry-level / paylater terkontrol",
+     "Investasi reksa dana mulai nominal kecil",
+     "KPR/KKB pertama (life-stage)"
+    ],
+    "share_dev": 0.21958227428445132,
+    "share_oot": 0.2663503896984073,
+    "profile_median": {
+     "monthly_salary": 10.87,
+     "avg_balance": 21.58,
+     "investment_balance": 7.64,
+     "monthly_txn_count": 64.0,
+     "monthly_txn_amount": 11.02,
+     "credit_card_spend": 2.29,
+     "loan_outstanding": 5.33,
+     "age": 28.0,
+     "tenure_years": 2.0,
+     "num_products": 3.0,
+     "digital_txn_ratio": 0.945
+    }
+   },
+   "3": {
+    "code": "credit_reliant",
+    "name": "Nasabah Bergantung Kredit",
+    "rule": "rasio loan_outstanding / monthly_salary tertinggi",
+    "description": "Pinjaman besar relatif terhadap gaji, saldo & investasi sangat rendah, belanja kartu kredit tinggi.",
+    "recommendations": [
+     "Pantau risiko kredit (early warning)",
+     "Tawarkan konsolidasi/restrukturisasi utang bila perlu",
+     "Edukasi keuangan & produk tabungan otomatis",
+     "Hindari cross-sell kredit baru yang agresif"
+    ],
+    "share_dev": 0.18521383578295944,
+    "share_oot": 0.17519484920365977,
+    "profile_median": {
+     "monthly_salary": 7.595,
+     "avg_balance": 3.795,
+     "investment_balance": 0.14,
+     "monthly_txn_count": 38.0,
+     "monthly_txn_amount": 6.56,
+     "credit_card_spend": 5.27,
+     "loan_outstanding": 99.175,
+     "age": 39.0,
+     "tenure_years": 5.1,
+     "num_products": 4.0,
+     "digital_txn_ratio": 0.68
+    }
+   },
+   "4": {
+    "code": "affluent",
+    "name": "Nasabah Prioritas (Affluent)",
+    "rule": "investment_balance median tertinggi",
+    "description": "Penghasilan & saldo sangat tinggi, investasi besar, memakai banyak produk, nasabah lama.",
+    "recommendations": [
+     "Relationship manager / layanan prioritas",
+     "Wealth management: reksa dana, obligasi, bancassurance",
+     "Kartu kredit premium",
+     "Program retensi (risiko churn = kehilangan dana besar)"
+    ],
+    "share_dev": 0.10023206984197149,
+    "share_oot": 0.10708234496780752,
+    "profile_median": {
+     "monthly_salary": 38.185,
+     "avg_balance": 259.42,
+     "investment_balance": 598.18,
+     "monthly_txn_count": 31.0,
+     "monthly_txn_amount": 54.27,
+     "credit_card_spend": 8.93,
+     "loan_outstanding": 75.13,
+     "age": 53.0,
+     "tenure_years": 12.1,
+     "num_products": 6.0,
+     "digital_txn_ratio": 0.674
+    }
+   }
+  },
+  "evaluation": {
+   "hopkins": 0.788865427454032,
+   "permutation_test": {
+    "silhouette": 0.3125400663962279,
+    "null_mean": 0.07603893150791347,
+    "p_value": 0.01
+   },
+   "k_scan_rule": "k in [4, 8], bootstrap ARI >= 0.75, max silhouette",
+   "silhouette_dev": 0.3119078257679987,
+   "silhouette_oot": 0.3175889035420994,
+   "bootstrap_ari": {
+    "mean": 0.9962098829725402,
+    "std": 0.0019840428271566462
+   },
+   "jaccard_per_segment": {
+    "sme_transactor": 0.9961102567767894,
+    "mass_saver": 0.9987705180588113,
+    "digital_young": 0.9951362771437379,
+    "credit_reliant": 0.9943977122612252,
+    "affluent": 0.997230478888915
+   },
+   "split_half_ari": {
+    "mean": 0.9931477205647884,
+    "min": 0.9890083938070335
+   },
+   "model_comparison": {
+    "K-Means": {
+     "silhouette": 0.3119078257679987,
+     "calinski_harabasz": 3807.494977702436,
+     "davies_bouldin": 1.2871482188994683,
+     "bootstrap_ARI": 0.9962098829725402,
+     "Jaccard_min_cluster": 0.9943977122612252,
+     "split_half_ARI": 0.9931477205647884
+    },
+    "Gaussian Mixture": {
+     "silhouette": 0.30604964961306297,
+     "calinski_harabasz": 3762.9902116368817,
+     "davies_bouldin": 1.3063529926750825,
+     "bootstrap_ARI": 0.9821907485471871,
+     "Jaccard_min_cluster": 0.9521119947042576,
+     "split_half_ARI": 0.9807955532125648
+    }
+   },
+   "oot": {
+    "segment_psi": 0.0147963187420332,
+    "chi2_p": 9.08022216089544e-07,
+    "refit_ari": 0.9806713752689747,
+    "max_feature_csi": {
+     "feature": "digital_txn_ratio",
+     "value": 0.14842183124184416
+    }
+   },
+   "external_ari_synthetic_only": 0.9442388312501178
+  },
+  "library_versions": {
+   "python": "3.14.6",
+   "scikit-learn": "1.9.1",
+   "pandas": "3.0.6",
+   "numpy": "2.4.6"
+  }
+ },
+ "preprocessing": [
+  {
+   "name": "log_num",
+   "type": "impute_log_scale",
+   "columns": [
+    "monthly_salary",
+    "avg_balance",
+    "investment_balance",
+    "monthly_txn_count",
+    "monthly_txn_amount",
+    "credit_card_spend",
+    "loan_outstanding"
+   ],
+   "impute_values": [
+    8.31,
+    10.29,
+    0.42,
+    35.0,
+    7.46,
+    0.17,
+    7.42
+   ],
+   "log1p": true,
+   "mean": [
+    2.325013129287577,
+    2.8386797971906788,
+    1.5675739752886417,
+    3.607278494449879,
+    2.4698405479162027,
+    0.8858800177656169,
+    2.58865102757555
+   ],
+   "scale": [
+    0.6710623021249251,
+    1.4749549547563123,
+    2.038870814436393,
+    0.8354220474792884,
+    1.2630587632196915,
+    1.0368175947632714,
+    1.8133037921458446
+   ]
+  },
+  {
+   "name": "num",
+   "type": "impute_scale",
+   "columns": [
+    "age",
+    "tenure_years",
+    "num_products",
+    "digital_txn_ratio"
+   ],
+   "impute_values": [
+    38.0,
+    5.1,
+    3.0,
+    0.682
+   ],
+   "log1p": false,
+   "mean": [
+    39.62957232843408,
+    5.79457398607581,
+    3.333738534644712,
+    0.668517626257045
+   ],
+   "scale": [
+    10.865030200211578,
+    4.4051114031252006,
+    1.6037484280194805,
+    0.22517152446831729
+   ]
+  },
+  {
+   "name": "cat",
+   "type": "impute_onehot_weight",
+   "columns": [
+    "preferred_channel"
+   ],
+   "impute_values": [
+    "mobile"
+   ],
+   "categories": [
+    [
+     "atm",
+     "branch",
+     "internet_banking",
+     "mobile"
+    ]
+   ],
+   "weight": 0.5
+  }
+ ],
+ "feature_names_out": [
+  "log_num__monthly_salary",
+  "log_num__avg_balance",
+  "log_num__investment_balance",
+  "log_num__monthly_txn_count",
+  "log_num__monthly_txn_amount",
+  "log_num__credit_card_spend",
+  "log_num__loan_outstanding",
+  "num__age",
+  "num__tenure_years",
+  "num__num_products",
+  "num__digital_txn_ratio",
+  "cat__preferred_channel_atm",
+  "cat__preferred_channel_branch",
+  "cat__preferred_channel_internet_banking",
+  "cat__preferred_channel_mobile"
+ ],
+ "model": {
+  "type": "kmeans",
+  "centers": [
+   [
+    0.8535823462601984,
+    1.1354967216832736,
+    0.6655595529790792,
+    1.5504170698963304,
+    1.7113817022497546,
+    0.06122356398201441,
+    0.8293263405639594,
+    0.17769652060098562,
+    0.25687445688908583,
+    0.4344683275173304,
+    0.34762744160403675,
+    -1.1102230246251565e-16,
+    0.04616588419405321,
+    0.23826291079812248,
+    0.21557120500782462
+   ],
+   [
+    -0.875854583426722,
+    -0.6481288959478985,
+    -0.6574921631662952,
+    -1.014482858780175,
+    -0.8824835065010439,
+    -0.7867513199162601,
+    -0.703736140623277,
+    0.25945970043834543,
+    0.06368228156427642,
+    -0.8421571857891411,
+    -0.8362411518516046,
+    0.20587316463605082,
+    0.14698531708840945,
+    3.191891195797325e-16,
+    0.1471415182755389
+   ],
+   [
+    0.21245851515643885,
+    0.17587554677060552,
+    0.22817746433600108,
+    0.6711877098476822,
+    0.043705313125101265,
+    0.09708430456686336,
+    -0.5079654682257339,
+    -1.0252285628252216,
+    -0.7947628973475432,
+    -0.16791123335379768,
+    1.1054054840212517,
+    0.005035246727089396,
+    0.0060422960725071,
+    0.06847935548841895,
+    0.42044310171198424
+   ],
+   [
+    -0.24473186381248366,
+    -0.8376375308751379,
+    -0.6865421966009161,
+    0.04541941720607984,
+    -0.32671923964566035,
+    0.8798203980957695,
+    0.9699250868529438,
+    -0.064036817196301,
+    -0.14926831910773028,
+    0.4143246814652931,
+    0.020068026949054654,
+    0.1144901610017889,
+    0.10614192009540849,
+    -1.249000902703301e-16,
+    0.2793679189028025
+   ],
+   [
+    1.8756394790973054,
+    1.8510750705724164,
+    2.152390435630085,
+    -0.1579057759473612,
+    1.211458987711108,
+    0.8510242820358799,
+    0.6339971026883009,
+    1.1972072919271066,
+    1.4295364344921522,
+    1.9615698431832882,
+    0.003914756612189058,
+    4.163336342344337e-17,
+    0.18522601984564496,
+    0.18191841234840123,
+    0.13285556780595353
+   ]
+  ]
+ }
+}

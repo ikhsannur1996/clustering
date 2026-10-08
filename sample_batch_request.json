@@ -1,0 +1,79 @@
+{
+  "instances": [
+    {
+      "customer_id": "C006202",
+      "monthly_salary": 21.4,
+      "avg_balance": 89.81,
+      "investment_balance": 31.04,
+      "monthly_txn_count": 120,
+      "monthly_txn_amount": 131.2,
+      "credit_card_spend": 3.18,
+      "loan_outstanding": 85.42,
+      "age": 39,
+      "tenure_years": 6.6,
+      "num_products": 3,
+      "digital_txn_ratio": 0.892,
+      "preferred_channel": "internet_banking"
+    },
+    {
+      "customer_id": "C004863",
+      "monthly_salary": 4.57,
+      "avg_balance": 3.3,
+      "investment_balance": 0.0,
+      "monthly_txn_count": 19,
+      "monthly_txn_amount": 2.76,
+      "credit_card_spend": 0.0,
+      "loan_outstanding": 3.33,
+      "age": 43,
+      "tenure_years": 5.3,
+      "num_products": 2,
+      "digital_txn_ratio": 0.433,
+      "preferred_channel": "mobile"
+    },
+    {
+      "customer_id": "C009565",
+      "monthly_salary": 11.02,
+      "avg_balance": 20.57,
+      "investment_balance": 10.25,
+      "monthly_txn_count": 66,
+      "monthly_txn_amount": 16.1,
+      "credit_card_spend": 3.13,
+      "loan_outstanding": 5.89,
+      "age": 28,
+      "tenure_years": 1.9,
+      "num_products": 3,
+      "digital_txn_ratio": 1.0,
+      "preferred_channel": "mobile"
+    },
+    {
+      "customer_id": "C002809",
+      "monthly_salary": 9.74,
+      "avg_balance": 3.11,
+      "investment_balance": 0.15,
+      "monthly_txn_count": 44,
+      "monthly_txn_amount": 5.64,
+      "credit_card_spend": 9.31,
+      "loan_outstanding": 107.64,
+      "age": 38,
+      "tenure_years": 5.2,
+      "num_products": 4,
+      "digital_txn_ratio": 0.702,
+      "preferred_channel": "mobile"
+    },
+    {
+      "customer_id": "C009168",
+      "monthly_salary": 25.58,
+      "avg_balance": 199.17,
+      "investment_balance": 415.03,
+      "monthly_txn_count": 26,
+      "monthly_txn_amount": 71.71,
+      "credit_card_spend": 5.99,
+      "loan_outstanding": 61.83,
+      "age": 53,
+      "tenure_years": 14.2,
+      "num_products": 7,
+      "digital_txn_ratio": 0.799,
+      "preferred_channel": "internet_banking"
+    }
+  ]
+}

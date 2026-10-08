@@ -1,0 +1,10 @@
+services:
+  api:
+    build: .
+    image: customer-segmentation-api:latest
+    container_name: customer-segmentation-api
+    ports:
+      - "8001:8000"   # host 8001 agar tidak bentrok dengan API credit default (8000)
+    environment:
+      - LOG_LEVEL=INFO
+    restart: unless-stopped

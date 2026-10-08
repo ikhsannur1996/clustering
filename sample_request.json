@@ -1,0 +1,15 @@
+{
+  "customer_id": "C006202",
+  "monthly_salary": 21.4,
+  "avg_balance": 89.81,
+  "investment_balance": 31.04,
+  "monthly_txn_count": 120,
+  "monthly_txn_amount": 131.2,
+  "credit_card_spend": 3.18,
+  "loan_outstanding": 85.42,
+  "age": 39,
+  "tenure_years": 6.6,
+  "num_products": 3,
+  "digital_txn_ratio": 0.892,
+  "preferred_channel": "internet_banking"
+}
